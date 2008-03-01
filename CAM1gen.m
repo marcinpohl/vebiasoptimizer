@@ -1,0 +1,3 @@
+function [CAM]=CAM1gen(AIRFLOW, RPM, CYL)
+CAM= 120.*AIRFLOW./(RPM.*CYL);
+% CAM= 15.*AIRFLOW./RPM;

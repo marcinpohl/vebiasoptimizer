@@ -1,0 +1,24 @@
+function [out]= objectivefunction2(x)
+
+clear TEMPc BIASexpc out FILTERexpc
+global DYNAIRgsec IATk ECTk MATk paramVEcomponents MAPkpa CAM0
+
+% BIASexpc= BIASexp(x(1), x(2), x(3) , DYNAIRgsec);
+BIASexpc= BIASexp(x(1), x(2), x(3) , DYNAIRgsec);
+TEMPc= TEMPbias(IATk, ECTk, BIASexpc);
+
+% FILTERexpc= FILTERgenerator(x(4),x(5), DYNAIRgsec);
+FILTERexpc= FILTERgenerator(x(4),x(5), DYNAIRgsec);
+TEMPd= TEMPfiltering(TEMPc, FILTERexpc);
+
+CAM3a= CAM3(0.001* (paramVEcomponents * x(6:11)'), MAPkpa, TEMPd);
+out = norm(CAM0-CAM3a);
+
+
+% out= norm(MATk - TEMPd);        % SSE
+% out= mean(abs(MATk-TEMPd));   % avg error
+% out= max(abs(MATk-TEMPd));    % max error
+% out= sum(abs(MATk-TEMPd));    % sum of errors
+
+
+% disp(x);

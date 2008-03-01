@@ -1,0 +1,2 @@
+function [CAM]=CAM3gen(GMVEa, MAP, TEMP)
+CAM=GMVEa.*MAP./TEMP;

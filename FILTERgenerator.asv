@@ -1,0 +1,9 @@
+function [FILTER]= FILTERgenerator(a, b, MAFgsec)
+
+FILTER= a*MAFgsec+b;
+FILTER(MAFgsec>=150) = a*150+b;
+
+
+% FILTERx= linspace(0,150);
+% FILTERy= a*FILTERx+b;
+% plot(FILTERx, FILTERy, '-.');

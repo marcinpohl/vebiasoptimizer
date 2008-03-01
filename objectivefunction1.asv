@@ -1,0 +1,15 @@
+function [out]= objectivefunction1(x)
+% disp(x);
+clear TEMPc BIASexpc out FILTERexpc
+global DYNAIRgsec IATk ECTk MATk
+
+% BIASexpc= BIASexp(x(1), MAFgsec);
+BIASexpc= BIASexp(x(1), x(2), x(3) , DYNAIRgsec);
+TEMPc= TEMPbias(IATk, ECTk, BIASexpc);
+
+FILTERexpc= FILTERgenerator(x(4),x(5), DYNAIRgsec);
+TEMPd= TEMPfiltering(TEMPc, FILTERexpc);
+
+% out= norm(MATk - TEMPd);
+out=avg(ab
+% disp(x);

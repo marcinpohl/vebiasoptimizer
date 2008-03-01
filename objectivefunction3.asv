@@ -1,0 +1,7 @@
+function [out]= objectivefunction3(x)
+
+global GMVE MAPkpa RPM paramVEcomponents
+
+GMVEhat= paramVEcomponents*x';
+
+out= norm(GMVE-GMVEhat);

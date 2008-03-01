@@ -1,0 +1,29 @@
+function []= plotGMVE(coefslist)
+tic
+MAP= [10:5:105]';
+RPM= [400:400:6800]';
+ZONES= zeros(length(RPM),length(MAP));
+% ZONE((RPM<=4000) & MAPkpa<=50) =1;
+% ZONE((RPM>4000)  & MAPkpa<=50) =2;
+% ZONE((RPM<=4000) & MAPkpa>50)  =3;
+% ZONE((RPM>4000)  & MAPkpa>50)  =4;
+
+% mr= zeros(length(MAP),length(RPM))
+[m,r]= meshgrid(MAP,RPM);
+ZONES((r<=4000) & m<=50) =1;
+ZONES((r>4000)  & m<=50) =2;
+ZONES((r<=4000) & m>50)  =3;
+ZONES((r>4000)  & m>50)  =4;
+
+for zone=1:4
+    coefs= coefslist(:,zone);
+    %    C     +    M     +    R     +  M*R      
+    g= coefs(1)+m*coefs(2)+r*coefs(3)+m.*r*coefs(4)+m.*m*coefs(5)+r.*r*coefs(6);
+    
+    g2= g(ZONES==zone);
+end
+
+hold off
+surf(MAP,RPM,g);
+hold on
+toc

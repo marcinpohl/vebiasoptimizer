@@ -1,0 +1,9 @@
+
+PARAMnames=["constant",'MAP','MAPsquare','RPM','RPMsquare','MAP*RPM'];
+
+for i=1:length(PARAMnames)
+    disp(   PARAMnames(i));
+    disp(    coefs(i,:));
+end
+    
+    

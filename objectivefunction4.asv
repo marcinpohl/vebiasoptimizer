@@ -1,0 +1,26 @@
+function [out]= objectivefunction4(x)
+
+% clear TEMPc BIASexpc out FILTERexpc
+global DYNAIRgsec IATk ECTk MATk paramVEcomponents MAPkpa CAM0 GMVEhat IPW1 IFRgsec AFR coefs BIASexpc FILTERexpc
+
+BIASexpc= BIASexp(x(1), x(2), x(3) , DYNAIRgsec);
+TEMPc= TEMPbias(IATk, ECTk, BIASexpc);
+% scatter(DYNAIRgsec,BIASexpc);
+% hold on
+FILTERexpc= FILTERgenerator(x(4),x(5), DYNAIRgsec);
+TEMPd= TEMPfiltering(TEMPc, FILTERexpc);
+% scatter(DYNAIRgsec,FILTERexpc);
+
+coefs= paramVEcomponents\(CAM0.*TEMPd./MAPkpa);
+GMVEhat= paramVEcomponents*coefs;
+CAM3a= CAM3(GMVEhat,MAPkpa,TEMPd);
+
+AFRhat= 1000* CAM3a./(IPW1.*IFRgsec);
+out= norm(AFR - AFRhat);
+% out= sum(abs(AFR - AFRhat))/length(AFR);
+
+% early 
+% if max(BIASexpc)>1e6 || min(BIASexpc)<0 || max(FILTERexpc)>1 || min(FILTERexpc)<=0
+%     out= out * 10;
+% end
+
