@@ -15,5 +15,5 @@ for zone=1:max(ZONE)
     end
 end
 CAM3a= CAM3gen(GMVEhat, MAPkpa, TEMPd);
-out= sum((CAM2(logical(weights)) - CAM3a(logical(weights))).^2);
+out= sqrt(sum((CAM2(logical(weights)) - CAM3a(logical(weights))).^2)/(sum(weights)));
 % out= norm(MATk - TEMPd);

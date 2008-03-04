@@ -1,7 +1,7 @@
 format compact
 format short g
 % global DYNAIRgsec IATk ECTk MATk CAM0 paramVEcomponents MAPkpa RPM GMVE
-global DYNAIRgsec IATk ECTk MATk paramVEcomponents MAPkpa CAM0 CAM1 CAM1s CAM2s CAM2 CAM3 GMVEhat IPW1 IFRgsec AFR AFRwb coefs BIASexpc FILTERexpc ZONE SPEEDkmh TEMPc TEMPd weights
+global DYNAIRgsec IATk ECTk MATk paramVEcomponents MAPkpa CAM0 CAM1 CAM2 GMVEhat IPW1 IFRgsec AFR AFRwb coefs BIASexpc FILTERexpc ZONE SPEEDkmh TEMPc TEMPd weights
 % load
 % ECTk=ECTc+273.15;
 % IATk=IATc+273.15;
